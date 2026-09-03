@@ -11,4 +11,16 @@ function horseDraw(x,y){ctx.save();ctx.translate(x,y);ctx.fillStyle='#392323';ct
 function rider(){let x=hero.x*W,y=hero.y*H;ctx.save();ctx.translate(x,y);ctx.fillStyle='#201b20';ctx.beginPath();ctx.ellipse(0,15,16,7,0,0,7);ctx.fill();ctx.fillRect(-8,-24,16,38);ctx.fillStyle='#a74932';ctx.beginPath();ctx.arc(0,-31,8,0,7);ctx.fill();ctx.fillStyle='#201617';ctx.fillRect(-14,-40,28,5);ctx.restore()}
 function loop(){t++;if(playing){let speed=(keys.has('shift')||keys.has(' '))?.006:.003;let dx=(keys.has('d')||keys.has('arrowright'))-(keys.has('a')||keys.has('arrowleft'));let dy=(keys.has('s')||keys.has('arrowdown'))-(keys.has('w')||keys.has('arrowup'));hero.x=Math.max(.06,Math.min(.94,hero.x+dx*speed));hero.y=Math.max(.59,Math.min(.88,hero.y+dy*speed));if(Math.hypot(hero.x-horse.x,hero.y-horse.y)<.12){document.querySelector('#prompt').textContent='E  INTERACT WITH FRONTIER HORSE'}else document.querySelector('#prompt').textContent='WASD / ARROWS TO MOVE';progress=Math.max(progress,Math.max(0,(hero.y-.72)*-1))}sky();ground();town();horseDraw(horse.x*W,horse.y*H);rider();document.querySelector('#progress').style.width=`${Math.round(progress*100)}%`;document.querySelector('#distance').textContent=`DISTANCE  —  ${Math.max(0,480-Math.round(progress*480))}m`;requestAnimationFrame(loop)}
 function sfx(freq,dur,type='sine'){if(muted)return;const ac=window.audioCtx||(window.audioCtx=new AudioContext());const o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(.0001,ac.currentTime);g.gain.exponentialRampToValueAtTime(.045,ac.currentTime+.01);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+dur);o.connect(g).connect(ac.destination);o.start();o.stop(ac.currentTime+dur+.02)}
-document.querySelector('#start-btn').onclick=()=>{playing=true;document.querySelector('#start').classList.add('hidden');toast('The trail begins where the red dust ends.');sfx(110,.5,'sawtooth')};document.querySelector('#sound').onclick=e=>{muted=!muted;e.target.textContent=muted?'SOUND OFF':'SOUND ON';if(!muted)sfx(330,.1)};
+function pressKey(key){keys.add(key)}function releaseKey(key){keys.delete(key)}
+document.querySelectorAll('[data-key]').forEach(button=>{
+  const key=button.dataset.key;
+  const down=e=>{e.preventDefault();pressKey(key);if(button.setPointerCapture)button.setPointerCapture(e.pointerId)};
+  const up=e=>{e.preventDefault();releaseKey(key)};
+  button.addEventListener('pointerdown',down);
+  button.addEventListener('pointerup',up);
+  button.addEventListener('pointercancel',up);
+  button.addEventListener('pointerleave',up);
+});
+function startGame(){playing=true;document.querySelector('#start').classList.add('hidden');toast('The trail begins where the red dust ends.');try{const ac=window.audioCtx||(window.audioCtx=new AudioContext());if(ac.state==='suspended')ac.resume();sfx(110,.5,'sawtooth')}catch(err){muted=true}}
+document.querySelector('#start-btn').addEventListener('click',startGame);document.querySelector('#sound').addEventListener('click',e=>{muted=!muted;e.target.textContent=muted?'SOUND OFF':'SOUND ON';if(!muted)sfx(330,.1)});
+window.addEventListener('error',()=>{if(!playing){document.querySelector('#fatal').hidden=false}});

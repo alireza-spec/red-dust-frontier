@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+  <meta name="theme-color" content="#201617" />
   <title>Red Dust Frontier — Dusthaven</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -15,9 +16,14 @@
     <div class="crosshair" aria-hidden="true"></div>
     <div id="prompt" class="prompt">WASD / ARROWS TO MOVE</div>
     <div class="toast" id="toast">A hard wind carries a stranger's tune.</div>
+    <div class="touch-controls" aria-label="Touch controls">
+      <div class="dpad"><button data-key="arrowup" aria-label="Move up">▲</button><button data-key="arrowleft" aria-label="Move left">◀</button><button data-key="arrowdown" aria-label="Move down">▼</button><button data-key="arrowright" aria-label="Move right">▶</button></div>
+      <div class="touch-actions"><button data-key="shift" aria-label="Gallop">GALLOP</button><button data-key="e" aria-label="Interact">INTERACT</button></div>
+    </div>
     <footer class="controls"><span><b>WASD</b> MOVE</span><span><b>SHIFT</b> GALLOP</span><span><b>E</b> INTERACT</span><button id="sound">SOUND ON</button></footer>
-    <div id="start" class="start-screen"><div class="start-panel"><div class="stamp">DUSTHAVEN TERRITORY</div><h2>RED DUST<br><em>FRONTIER</em></h2><p>An original western field story.</p><button id="start-btn">ENTER THE FRONTIER</button><small>Best experienced with sound · Desktop recommended</small></div></div>
+    <div id="start" class="start-screen"><div class="start-panel"><div class="stamp">DUSTHAVEN TERRITORY</div><h2>RED DUST<br><em>FRONTIER</em></h2><p>An original western field story.</p><button id="start-btn">ENTER THE FRONTIER</button><small>Touch controls supported · Tap to enable sound</small></div></div>
+    <div id="fatal" class="fatal" hidden><strong>THE FRONTIER IS LOADING</strong><span>Refresh the page and try again.</span></div>
   </main>
-  <script type="module" src="game.js"></script>
+  <script src="game.js" defer></script>
 </body>
 </html>
