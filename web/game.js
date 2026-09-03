@@ -23,4 +23,6 @@ document.querySelectorAll('[data-key]').forEach(button=>{
 });
 function startGame(){playing=true;document.querySelector('#start').classList.add('hidden');toast('The trail begins where the red dust ends.');try{const ac=window.audioCtx||(window.audioCtx=new AudioContext());if(ac.state==='suspended')ac.resume();sfx(110,.5,'sawtooth')}catch(err){muted=true}}
 document.querySelector('#start-btn').addEventListener('click',startGame);document.querySelector('#sound').addEventListener('click',e=>{muted=!muted;e.target.textContent=muted?'SOUND OFF':'SOUND ON';if(!muted)sfx(330,.1)});
-window.addEventListener('error',()=>{if(!playing){document.querySelector('#fatal').hidden=false}});
+// Keep optional fonts/audio from blocking the playable scene. Only show the fallback for a real script rejection.
+window.addEventListener('unhandledrejection',event=>{console.warn('Optional frontier feature unavailable',event.reason)});
+loop();
