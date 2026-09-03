@@ -16,7 +16,7 @@ An original cinematic western vertical slice set around Dusthaven. This is not a
 - `web/assets/images/` — handcrafted SVG visual identity
 - `web/assets/audio/` — original WAV audio created for this project
 
-Controls: `WASD` / arrow keys to move, `Shift` or `Space` to gallop, `E` to interact near the horse. Click **Enter the Frontier** to enable audio.
+Controls: Desktop uses `WASD` / arrow keys to move, `Shift` or `Space` to gallop, and `E` to interact near the horse. On phones and tablets, use the on-screen directional pad plus **GALLOP** and **INTERACT** buttons. Tap **Enter the Frontier** to start and enable audio.
 
 ## Godot build
 
