@@ -1,29 +1,23 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-  <meta name="theme-color" content="#201617" />
-  <title>Red Dust Frontier — Dusthaven</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+<meta name="theme-color" content="#16151b" />
+<title>Red Dust Frontier — Dusthaven</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main id="game-shell">
-    <canvas id="game" aria-label="Red Dust Frontier playable game"></canvas>
-    <div class="grain"></div>
-    <header class="brand"><img src="assets/images/frontier-mark.svg" alt="Red Dust Frontier" /><span>FIELD REPORT 01</span></header>
-    <section class="mission-card"><div class="eyebrow">ACTIVE CONTRACT</div><h1>THE LOST LETTER</h1><p>Ride beyond Dusthaven. Find the signal fire before the sun drops.</p><div class="meter"><i id="progress"></i></div><small id="distance">DISTANCE  —  480m</small></section>
-    <div class="crosshair" aria-hidden="true"></div>
-    <div id="prompt" class="prompt">WASD / ARROWS TO MOVE</div>
-    <div class="toast" id="toast">A hard wind carries a stranger's tune.</div>
-    <div class="touch-controls" aria-label="Touch controls">
-      <div class="dpad"><button data-key="arrowup" aria-label="Move up">▲</button><button data-key="arrowleft" aria-label="Move left">◀</button><button data-key="arrowdown" aria-label="Move down">▼</button><button data-key="arrowright" aria-label="Move right">▶</button></div>
-      <div class="touch-actions"><button data-key="shift" aria-label="Gallop">GALLOP</button><button data-key="e" aria-label="Interact">INTERACT</button></div>
-    </div>
-    <footer class="controls"><span><b>WASD</b> MOVE</span><span><b>SHIFT</b> GALLOP</span><span><b>E</b> INTERACT</span><button id="sound">SOUND ON</button></footer>
-    <div id="start" class="start-screen"><div class="start-panel"><div class="stamp">DUSTHAVEN TERRITORY</div><h2>RED DUST<br><em>FRONTIER</em></h2><p>An original western field story.</p><button id="start-btn">ENTER THE FRONTIER</button><small>Touch controls supported · Tap to enable sound</small></div></div>
-    <div id="fatal" class="fatal" hidden style="display:none!important"><strong>THE FRONTIER IS LOADING</strong><span>Refresh the page and try again.</span></div>
-  </main>
-  <script src="game.js" defer></script>
-</body>
-</html>
+<main id="game-shell">
+<canvas id="game" aria-label="Red Dust Frontier 3D western game"></canvas>
+<div class="vignette"></div><div class="grain"></div>
+<header class="brand"><img src="assets/images/frontier-mark.svg" alt="Red Dust Frontier"/><span>FIELD REPORT 01</span></header>
+<section class="mission-card"><div class="eyebrow">ACTIVE CONTRACT</div><h1>THE LOST LETTER</h1><p>Ride beyond Dusthaven. Find the signal fire before the sun drops.</p><div class="meter"><i id="progress"></i></div><small id="distance">DISTANCE — 480m</small></section>
+<div class="crosshair"></div><div id="prompt" class="prompt">WASD / ARROWS TO MOVE</div><div id="toast" class="toast">A hard wind carries a stranger's tune.</div>
+<div class="touch-controls"><div class="dpad"><button data-key="arrowup">▲</button><button data-key="arrowleft">◀</button><button data-key="arrowdown">▼</button><button data-key="arrowright">▶</button></div><div class="touch-actions"><button data-key="shift">GALLOP</button><button data-key="e">INTERACT</button></div></div>
+<footer class="controls"><span><b>WASD</b> MOVE</span><span><b>SHIFT</b> GALLOP</span><span><b>E</b> INTERACT</span><button id="sound">SOUND ON</button></footer>
+<div id="start" class="start-screen"><div class="start-panel"><div class="stamp">DUSTHAVEN TERRITORY · 1894</div><h2>RED DUST<br><em>FRONTIER</em></h2><p>An original western field story.</p><button id="start-btn">ENTER THE FRONTIER</button><small>WebGL 3D · Touch controls supported</small></div></div>
+<div id="fatal" class="fatal" hidden><strong>FRONTIER RENDER ERROR</strong><span>Your browser could not start the 3D scene.</span></div>
+</main>
+<script type="module" src="game.js"></script>
+</body></html>
