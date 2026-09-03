@@ -25,4 +25,4 @@ function startGame(){playing=true;document.querySelector('#start').classList.add
 document.querySelector('#start-btn').addEventListener('click',startGame);document.querySelector('#sound').addEventListener('click',e=>{muted=!muted;e.target.textContent=muted?'SOUND OFF':'SOUND ON';if(!muted)sfx(330,.1)});
 // Keep optional fonts/audio from blocking the playable scene. Only show the fallback for a real script rejection.
 window.addEventListener('unhandledrejection',event=>{console.warn('Optional frontier feature unavailable',event.reason)});
-loop();
+try{loop()}catch(err){console.error('Frontier render error',err);const fatal=document.querySelector('#fatal');fatal.hidden=false;fatal.style.display='grid';fatal.querySelector('strong').textContent='FRONTIER RENDER ERROR';fatal.querySelector('span').textContent='Please reload the page.'}
